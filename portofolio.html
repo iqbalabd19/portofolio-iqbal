@@ -1,0 +1,155 @@
+from zipfile import ZipFile
+import os
+
+# Define the HTML content
+html_content = """
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio Iqbal</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #232f3e;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background-color: #1f2a36;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background-color: #3a4c61;
+    }
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .card {
+      background: #f8f9fa;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .flex-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .flex-item {
+      flex: 1 1 45%;
+      min-width: 280px;
+    }
+    footer {
+      background-color: #232f3e;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+    @media (max-width: 600px) {
+      .flex-item {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Iqbal Visuals</h1>
+    <p>Desain bermakna, video penuh cerita.</p>
+  </header>
+
+  <nav>
+    <a href="#tentang">Tentang</a>
+    <a href="#portofolio">Portofolio</a>
+    <a href="#jasa">Jasa</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+
+  <div class="container">
+    <section id="tentang" class="section">
+      <h2>Tentang Saya</h2>
+      <div class="card">
+        <p>Saya adalah kreator visual dengan minat utama di desain grafis dan video cinematic. Beberapa proyek yang saya banggakan termasuk dokumentasi wisuda dan video PHBI. Impian saya: menjadikan hobi kreatif ini bermanfaat bagi keluarga dan masyarakat.</p>
+      </div>
+    </section>
+
+    <section id="portofolio" class="section">
+      <h2>Portofolio</h2>
+      <div class="flex-grid">
+        <div class="flex-item card">
+          <h3>Desain Dokumentasi Wisuda</h3>
+          <p>Desain visual yang memukau banyak orang, dikemas secara estetik dan profesional.</p>
+        </div>
+        <div class="flex-item card">
+          <h3>Video Cinematic PHBI</h3>
+          <p>Video dokumentasi kegiatan keagamaan yang saya edit selama 10 jam lebih, dengan hasil memuaskan banyak pihak.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="jasa" class="section">
+      <h2>Layanan</h2>
+      <div class="card">
+        <ul>
+          <li>Desain dokumentasi & branding event</li>
+          <li>Editing video cinematic kegiatan</li>
+          <li>Desain konten dakwah visual</li>
+          <li>Desain feed Instagram & promosi UMKM</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="kontak" class="section">
+      <h2>Kontak</h2>
+      <div class="card">
+        <p>Hubungi saya melalui:</p>
+        <ul>
+          <li>Email: iqbal@example.com</li>
+          <li><a href="https://wa.me/6281234567890">WhatsApp</a></li>
+          <li><a href="https://youtube.com/@iqbalchannel">YouTube Channel</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Iqbal Visuals. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+"""
+
+# Write HTML file
+os.makedirs("/mnt/data/portofolio", exist_ok=True)
+html_path = "/mnt/data/portofolio/index.html"
+with open(html_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+# Zip the file
+zip_path = "/mnt/data/portofolio.zip"
+with ZipFile(zip_path, "w") as zipf:
+    zipf.write(html_path, arcname="index.html")
+
+zip_path
